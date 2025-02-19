@@ -1,0 +1,73 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "bd977f5f5ed5a5f8c944790bce6d3443",
+    "entities": [
+      {
+        "tableName": "currency",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`currencyCode` TEXT NOT NULL, `currencyName` TEXT NOT NULL, PRIMARY KEY(`currencyCode`))",
+        "fields": [
+          {
+            "fieldPath": "currencyCode",
+            "columnName": "currencyCode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "currencyName",
+            "columnName": "currencyName",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "currencyCode"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "exchange_rate",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`currencyCode` TEXT NOT NULL, `base` TEXT NOT NULL, `rate` REAL NOT NULL, PRIMARY KEY(`currencyCode`, `base`))",
+        "fields": [
+          {
+            "fieldPath": "currencyCode",
+            "columnName": "currencyCode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "base",
+            "columnName": "base",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "rate",
+            "columnName": "rate",
+            "affinity": "REAL",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "currencyCode",
+            "base"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'bd977f5f5ed5a5f8c944790bce6d3443')"
+    ]
+  }
+}
